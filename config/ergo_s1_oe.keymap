@@ -18,6 +18,16 @@
             #binding-cells = <0>;
             bindings = <&kp BACKSPACE>, <&kp LC(BACKSPACE)>;
         };
+
+        mt_layer: mt_layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_LAYER";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
     };
 
     keymap {
@@ -33,23 +43,34 @@
             //                                                         | END  |         | PGDN |
 
             bindings = <
-&kp EQUAL   &kp N1          &kp N2          &kp N3            &kp N4         &kp N5                                                                                          &kp N6  &kp N7       &kp N8            &kp N9           &kp N0              &kp MINUS
-&kp TAB     &kp Q           &kp W           &kp E             &kp R          &kp T                                                                                           &kp Y   &kp U        &kp I             &kp O            &kp P               &kp BACKSLASH
-&kp ESCAPE  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_SHIFT D  &mt LCTRL F    &kp G                                                                                           &kp H   &mt RCTRL J  &mt RSHFT K       &mt RIGHT_ALT L  &mt RGUI SEMICOLON  &kp SQT
-&kp CAPS    &kp Z           &kp X           &kp C             &kp V          &kp B              &kp LEFT_WIN  &mo 0               &mo 0              &kp CLCK                &kp N   &kp M        &kp COMMA         &kp PERIOD       &kp SLASH           &kp CAPS
-            &kp HOME        &kp END         &kp PG_UP         &kp PAGE_DOWN          &kp ENTER  &kp SPACE     &kp LALT            &kp RIGHT_ALT      &td_backspace  &kp DEL          &kp GRAVE    &kp LEFT_BRACKET  &kp RBKT         &kp MINUS
-                                                                                                              &kp LEFT_CONTROL    &kp RIGHT_CONTROL
+&kp EQUAL   &kp N1          &kp N2          &kp N3            &kp N4         &kp N5                                                                                               &kp N6  &kp N7       &kp N8            &kp N9           &kp N0              &kp MINUS
+&kp TAB     &kp Q           &kp W           &kp E             &kp R          &kp T                                                                                                &kp Y   &kp U        &kp I             &kp O            &kp P               &kp BACKSLASH
+&kp ESCAPE  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_SHIFT D  &mt LCTRL F    &kp G                                                                                                &kp H   &mt RCTRL J  &mt RSHFT K       &mt RIGHT_ALT L  &mt RGUI SEMICOLON  &kp SQT
+&kp CAPS    &kp Z           &kp X           &kp C             &kp V          &kp B              &kp LEFT_WIN       &mo 0               &mo 0              &kp CLCK                &kp N   &kp M        &kp COMMA         &kp PERIOD       &kp SLASH           &kp CAPS
+            &kp HOME        &kp END         &kp PG_UP         &kp PAGE_DOWN          &kp ENTER  &mt_layer 1 SPACE  &kp LALT            &kp RIGHT_ALT      &td_backspace  &kp DEL          &kp GRAVE    &kp LEFT_BRACKET  &kp RBKT         &kp MINUS
+                                                                                                                   &kp LEFT_CONTROL    &kp RIGHT_CONTROL
             >;
         };
 
         numpad {
             bindings = <
-&kp EQUAL   &kp N1          &kp N2          &kp N3            &kp N4         &kp N5                                                        &kp N6            &kp N7     &kp N8            &kp N9    &kp N0             &kp MINUS
-&kp TAB     &kp Q           &kp W           &kp E             &kp R          &kp T                                                         &kp LEFT_BRACKET  &kp N7     &kp N8            &kp N9    &kp RIGHT_BRACKET  &none
-&kp ESCAPE  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_SHIFT D  &mt LCTRL F    &kp G                                                         &kp LS(SQT)       &kp N4     &kp N5            &kp N6    &kp EQUAL          &none
-&kp CAPS    &kp Z           &kp X           &kp C             &kp V          &kp B          &none  &none    &none       &none              &kp SQT           &kp N1     &kp N2            &kp N3    &kp BACKSLASH      &none
-            &kp HOME        &kp END         &kp PG_UP         &kp PAGE_DOWN          &none  &none  &none    &none       &kp N0  &kp MINUS                    &kp GRAVE  &kp LEFT_BRACKET  &kp RBKT  &kp MINUS
-                                                                                                   &none    &kp PERIOD
+&kp EQUAL   &kp N1          &kp N2          &kp N3            &kp N4         &kp N5                                                         &kp N6            &kp N7     &kp N8            &kp N9    &kp N0             &kp MINUS
+&kp TAB     &kp Q           &kp W           &kp E             &kp R          &kp T                                                          &kp LEFT_BRACKET  &kp N7     &kp N8            &kp N9    &kp RIGHT_BRACKET  &none
+&kp ESCAPE  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_SHIFT D  &mt LCTRL F    &kp G                                                          &kp LS(SQT)       &kp N4     &kp N5            &kp N6    &kp EQUAL          &none
+&kp CAPS    &kp Z           &kp X           &kp C             &kp V          &kp B          &none   &none    &none       &none              &kp SQT           &kp N1     &kp N2            &kp N3    &kp BACKSLASH      &none
+            &kp HOME        &kp END         &kp PG_UP         &kp PAGE_DOWN          &none  &trans  &none    &none       &kp N0  &kp MINUS                    &kp GRAVE  &kp LEFT_BRACKET  &kp RBKT  &kp MINUS
+                                                                                                    &none    &kp PERIOD
+            >;
+        };
+
+        navigation {
+            bindings = <
+&kp EQUAL   &kp N1          &kp N2          &kp N3            &kp N4         &kp N5                                                                 &kp N6            &kp N7      &kp N8            &kp N9       &kp N0         &kp MINUS
+&kp TAB     &kp Q           &kp W           &kp E             &kp R          &kp T                                                                  &kp LS(NUMBER_3)  &kp K_BACK  &kp LC(LS(TAB))   &kp LC(TAB)  &kp K_FORWARD  &none
+&kp ESCAPE  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_SHIFT D  &mt LCTRL F    &kp G                                                                  &kp LEFT_ARROW    &kp DOWN    &kp UP_ARROW      &kp RIGHT    &kp CAPSLOCK   &none
+&kp CAPS    &kp Z           &kp X           &kp C             &kp V          &kp B           &none  &none    &none       &none                      &kp INSERT        &kp HOME    &kp PAGE_DOWN     &kp PG_UP    &kp END        &none
+            &kp HOME        &kp END         &kp PG_UP         &kp PAGE_DOWN          &trans  &none  &none    &none       &td_backspace  &kp DELETE                    &kp GRAVE   &kp LEFT_BRACKET  &kp RBKT     &kp MINUS
+                                                                                                    &none    &kp PERIOD
             >;
         };
     };
