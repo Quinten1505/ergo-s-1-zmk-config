@@ -12,6 +12,15 @@
 #define FN  1
 
 / {
+    behaviors {
+        td_backspace: td_backspace {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_BACKSPACE";
+            #binding-cells = <0>;
+            bindings = <&kp BACKSPACE>, <&kp LC(BACKSPACE)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -25,12 +34,12 @@
             //                                                         | END  |         | PGDN |
 
             bindings = <
-&kp EQUAL       &kp N1    &kp N2   &kp N3     &kp N4         &kp N5                                                                                          &kp N6  &kp N7     &kp N8            &kp N9      &kp N0                 &kp MINUS
-&kp TAB         &kp Q     &kp W    &kp E      &kp R          &kp T                                                                                           &kp Y   &kp U      &kp I             &kp O       &kp P                  &kp BACKSLASH
-&kp ESCAPE      &kp A     &kp S    &kp D      &kp F          &kp G                                                                                           &kp H   &kp J      &kp K             &kp L       &kp SEMI               &kp SQT
-&kp LEFT_SHIFT  &kp Z     &kp X    &kp C      &kp V          &kp B              &kp LEFT_WIN  &mo 1               &mo 2              &kp CLCK                &kp N   &kp M      &kp COMMA         &kp PERIOD  &kp SLASH              &kp RIGHT_SHIFT
-                &kp HOME  &kp END  &kp PG_UP  &kp PAGE_DOWN          &kp ENTER  &kp SPACE     &kp LALT            &kp RIGHT_ALT      &kp BACKSPACE  &kp DEL          &kp GRAVE  &kp LEFT_BRACKET  &kp RBKT    &kp RIGHT_PARENTHESIS
-                                                                                              &kp LEFT_CONTROL    &kp RIGHT_CONTROL
+&kp EQUAL   &kp N1          &kp N2          &kp N3            &kp N4         &kp N5                                                                                          &kp N6  &kp N7       &kp N8            &kp N9           &kp N0              &kp MINUS
+&kp TAB     &kp Q           &kp W           &kp E             &kp R          &kp T                                                                                           &kp Y   &kp U        &kp I             &kp O            &kp P               &kp BACKSLASH
+&kp ESCAPE  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_SHIFT D  &mt LCTRL F    &kp G                                                                                           &kp H   &mt RCTRL J  &mt RSHFT K       &mt RIGHT_ALT L  &mt RGUI SEMICOLON  &kp SQT
+&kp CAPS    &kp Z           &kp X           &kp C             &kp V          &kp B              &kp LEFT_WIN  &mo 1               &mo 2              &kp CLCK                &kp N   &kp M        &kp COMMA         &kp PERIOD       &kp SLASH           &kp CAPS
+            &kp HOME        &kp END         &kp PG_UP         &kp PAGE_DOWN          &kp ENTER  &kp SPACE     &kp LALT            &kp RIGHT_ALT      &td_backspace  &kp DEL          &kp GRAVE    &kp LEFT_BRACKET  &kp RBKT         &kp MINUS
+                                                                                                              &kp LEFT_CONTROL    &kp RIGHT_CONTROL
             >;
         };
 
